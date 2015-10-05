@@ -396,7 +396,9 @@ var formFor;
         function CheckboxFieldDirective($log, fieldHelper) {
             this.require = '^formFor';
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/checkbox-field.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/checkbox-field.html';
+            };
             this.scope = {
                 attribute: '@',
                 disable: '=',
@@ -455,7 +457,9 @@ var formFor;
         function CollectionLabelDirective($sce) {
             this.require = '^formFor';
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/collection-label.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/collection-label.html';
+            };
             this.scope = {
                 attribute: '@',
                 help: '@?',
@@ -492,7 +496,9 @@ var formFor;
     var FieldErrorDirective = (function () {
         function FieldErrorDirective() {
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/field-error.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/field-error.html';
+            };
             this.scope = {
                 error: '=',
                 leftAligned: '@?',
@@ -532,7 +538,9 @@ var formFor;
         function FieldLabelDirective($sce, formForConfiguration) {
             this.replace = true; // Necessary for CSS sibling selectors
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/field-label.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/field-label.html';
+            };
             this.scope = {
                 inputUid: '@',
                 help: '@?',
@@ -1353,8 +1361,7 @@ var formFor;
         FormForDirective.prototype.controller.$inject = ["$scope"];
         /* @ngInject */
         FormForDirective.prototype.link = function ($scope, $element, $attributes) {
-            $element.on('submit', // Override form submit to trigger overall validation.
-            function () {
+            $element.on('submit', function () {
                 $scope.formForStateHelper.setFormSubmitted(true);
                 $scope.disable = true;
                 var validationPromise;
@@ -1480,7 +1487,9 @@ var formFor;
         function RadioFieldDirective($sce, $log, FormForConfiguration) {
             this.require = '^formFor';
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/radio-field.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/radio-field.html';
+            };
             this.scope = {
                 attribute: '@',
                 disable: '=',
@@ -1600,7 +1609,9 @@ var formFor;
         function SelectFieldDirective($document, $log, $timeout, fieldHelper, formForConfiguration) {
             this.require = '^formFor';
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/select-field.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/select-field.html';
+            };
             this.scope = {
                 attribute: '@',
                 disable: '=',
@@ -1795,7 +1806,9 @@ var formFor;
         function SubmitButtonDirective($sce) {
             this.require = '^formFor';
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/submit-button.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/submit-button.html';
+            };
             this.scope = {
                 disable: '=',
                 buttonClass: '@',
@@ -1863,7 +1876,9 @@ var formFor;
         function TextFieldDirective($log, $timeout, fieldHelper) {
             this.require = '^formFor';
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/text-field.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/text-field.html';
+            };
             this.scope = {
                 attribute: '@',
                 debounce: '@?',
@@ -2022,7 +2037,9 @@ var formFor;
         function TypeAheadFieldDirective($document, $log, $timeout, fieldHelper) {
             this.require = '^formFor';
             this.restrict = 'EA';
-            this.templateUrl = 'form-for/templates/type-ahead-field.html';
+            this.templateUrl = function ($element, $attributes) {
+                return $attributes['template'] || 'form-for/templates/type-ahead-field.html';
+            };
             this.scope = {
                 attribute: '@',
                 debounce: '@?',
